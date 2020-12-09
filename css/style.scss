@@ -1,0 +1,74 @@
+@import 'colors';
+@import 'fonts';
+@import 'extends';
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: $font-montserrat;
+}
+
+//Menú
+
+.menu {
+    border-bottom: 1px $color-blue solid;
+    background-color: $color-white;
+    z-index: 10;
+}
+
+.brand em {
+    color: $color-blue;
+    font-style: normal;
+    font-weight: bolder;
+    letter-spacing: 2px;
+}
+
+.brand:hover {
+    opacity: 0.5;
+}
+
+.menu li a {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: bolder;
+    color: $color-red !important;
+}
+
+.menu li a:hover {
+    color: $color-dark-grey !important;
+}
+
+//Inicio
+
+.logo {
+    margin-top: 100px;
+}
+
+//Productos
+
+.product-image {
+    @extend %images;
+}
+
+.product-description {
+    @extend %description;
+}
+
+.product-price {
+    @extend %price;
+}
+
+.product-box {
+    background-color: $color-ghost-white;
+}
+
+.product-box-ii {
+    background-color: $color-pantone;
+}
+
+.title {
+    @extend %titles;
+}
