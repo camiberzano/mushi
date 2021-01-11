@@ -7,19 +7,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Bootstrap CSS -->
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-
-    <!-- Mi CSS -->
-
-    <link rel="stylesheet" href="css/style.css">
-
-    <!-- Mi JS -->
-
-    <script src="js/main.js"></script>
-
     <!-- Font -->
 
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
@@ -33,386 +20,257 @@
     <meta name="description"
         content="Impresiones personalizadas, las mejores cosas para tu casa y para vos con tus personajes favoritos.">
 
+    <!-- Mi CSS -->
+
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/jquery-ui.min.css">
+
 </head>
 
-<body>
+<body cz-shortcut-listen="true">
 
     <!-- Menú -->
 
     <header>
 
-        <nav class="navbar navbar-expand-lg navbar-light fixed-top menu">
-            <div class="container-fluid">
-                <a class="navbar-brand brand" href="#home"> <em>MUSHI3D</em> </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#hmj">Hogar, Muebles y Jardín</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#eav">Electrónica, Audio y Video</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#jj">Juegos y Juguetes</a>
-                        </li>
-                    </ul>
-                    <form class="d-flex">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-secondary" type="submit">Search</button>
-                    </form>
-                </div>
+        <nav class="navbar navbar-expand-md navbar-light mb-4 fixed-top menu">
+            <a class="navbar-brand brand" href="#home"> <em>MUSHI3D</em> </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="">Home</a>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="">Tienda</a>
+                    </li>
+                </ul>
             </div>
-        </nav>
 
     </header>
 
-
     <!-- Fin Menú-->
 
-    <!--Inicio-->
 
-    <main class="home">
+    <!-- Carrito de Compras -->
 
-        <a name="home"></a>
+    <section class="shopping-cart">
+        <div class="container">
+            <h1 class="text-center">CARRITO</h1>
+            <hr>
+            <div class="row">
+                <div class="col-6">
+                    <div class="shopping-cart-header">
+                        <h6>Producto</h6>
+                    </div>
+                </div>
+                <div class="col-2">
+                    <div class="shopping-cart-header">
+                        <h6 class="text-truncate">Precio</h6>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="shopping-cart-header">
+                        <h6>Cantidad</h6>
+                    </div>
+                </div>
+            </div>
 
-        <div class="container justify-content-center logo">
+            <div class="shopping-cart-items shoppingCartItemsContainer">
+            </div>
 
-            <img src="images/logo-completo.jpg" alt="">
+            <div class="row">
+                <div class="col-12">
+                    <div class="shopping-cart-total d-flex align-items-center">
+                        <p class="mb-0">Total</p>
+                        <p class="ml-4 mb-0 shoppingCartTotal">$0</p>
+                        <div class="toast ml-auto bg-info" role="alert" aria-live="assertive" aria-atomic="true"
+                            data-delay="2000">
+                            <div class="toast-header">
+                                <span>✅</span>
+                                <strong class="mr-auto ml-1 text-secondary">Elemento en el carrito</strong>
+                                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        </div>
+                        <button class="btn btn-success ml-auto comprarButton" type="button" data-toggle="modal"
+                            data-target="#comprarModal">Comprar</button>
+                    </div>
+                </div>
+            </div>
 
+            <div class="modal fade" id="comprarModal" tabindex="-1" aria-labelledby="comprarModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="comprarModalLabel">Gracias por su compra</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary modal-close" data-dismiss="modal">Cerrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+    </section>
 
-    </main>
-
-    <!-- Fin Inicio-->
+    <!-- Fin Carrito de Compras -->
 
     <!-- Productos -->
 
-    <!-- Hogar, Muebles y Jardín -->
-
-    <section class="hmj">
-
-        <a name="hmj"></a>
-
-        <H6 class="title">Hogar, Muebles y Jardín</H6>
-
-        <div class="container justify-content-center">
-
-            <div class="row">
-
-                <div class="col-md-4 product-box">
-
-                    <img src="images/mate-babygroot.jpg" alt="" class="product-image">
-
-                    <div class="row">
-
-                        <div class="col-md-12">
-
-                            <div class="product-description">Mate Baby Groot 3D Con Interior De
-                                Polímero + Bombilla</div>
-
-                            <div class="product-price">$ 750</div>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <div class="col-md-4 product-box-ii">
-
-                    <img src="images/mate-babygrootii.jpg" alt="" class="product-image">
-
-                    <div class="row">
-
-                        <div class="col-md-12">
-
-                            <div class="product-description">Mate Baby Groot 3d Con Interior De
-                                Polímero + Bombilla</div>
-
-                            <p class="product-price">$ 850</p>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <div class="col-md-4 product-box">
-
-                    <img src="images/mate-terminator.jpg" alt="" class="product-image">
-
-                    <div class="row">
-
-                        <div class="col-md-12">
-
-                            <div class="product-description">Mate Terminator T-800 Con Interior De Polímero + Bombilla
+    <section class="store">
+        <div class="container">
+            <div class="items">
+                <div class="row">
+                    <div class="col-12 col-md-4 item-container">
+                        <div class="item shadow mb-4">
+                            <h3 class="item-title">Muñeco Among Us</h3>
+                            <img class="item-image" src="images/muñeco-amongus.jpg">
+                            <div class="item-details">
+                                <h4 class="item-price">$599.99</h4>
+                                <button class="item-button btn btn-primary addToCart">AÑADIR AL CARRITO</button>
                             </div>
-
-                            <p class="product-price">$ 850</p>
-
                         </div>
-
                     </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class="container justify-content-center">
-
-            <div class="row">
-
-                <div class="col-md-4 product-box-ii">
-
-                    <img src="images/mate-darthvader.jpg" alt="" class="product-image">
-
-                    <div class="row">
-
-                        <div class="col-md-12">
-
-                            <div class="product-description">Mate Darth Vader de Polímero + Bombilla</div>
-
-                            <div class="product-price">$ 750</div>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <div class="col-md-4 product-box">
-
-                    <img src="images/cortantes-galletas.jpg" alt="" class="product-image">
-
-                    <div class="row">
-
-                        <div class="col-md-12">
-
-                            <div class="product-description">Cortantes Para Galletas De Navidad Precio X Unidad</div>
-
-                            <p class="product-price">$ 110</p>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <div class="col-md-4 product-box-ii">
-
-                    <img src="images/mate-robocop.jpg" alt="" class="product-image">
-
-                    <div class="row">
-
-                        <div class="col-md-12">
-
-                            <div class="product-description">Mate Robocop Con Interior De Polímero + Bombilla </div>
-
-                            <p class="product-price">$ 950</p>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class="container justify-content-center">
-
-            <div class="row">
-
-                <div class="col-md-4 product-box">
-
-                    <img src="images/organizador-pared.jpg" alt="" class="product-image">
-
-                    <div class="row">
-
-                        <div class="col-md-12">
-
-                            <div class="product-description">Organizador De Pared - Llaves Billetera Barbijo Anteojos
+                    <div class="col-12 col-md-4 item-container">
+                        <div class="item shadow mb-4">
+                            <h3 class="item-title">Cortantes para Galletas</h3>
+                            <img class="item-image" src="images/cortantes-galletas.jpg">
+                            <div class="item-details">
+                                <h4 class="item-price">$549.99</h4>
+                                <button class="item-button btn btn-primary addToCart">AÑADIR AL CARRITO</button>
                             </div>
-
-                            <div class="product-price">$ 600</div>
-
                         </div>
-
                     </div>
-
-                </div>
-
-                <div class="col-md-4 product-box-ii">
-
-                    <img src="images/mate-deathstar.jpg" alt="" class="product-image">
-
-                    <div class="row">
-
-                        <div class="col-md-12">
-
-                            <div class="product-description">Mate Death Star Estrella De La Muerte de Polímero +
-                                Bombilla
+                    <div class="col-12 col-md-4 item-container">
+                        <div class="item shadow mb-4">
+                            <h3 class="item-title">Soporte de Auriculares</h3>
+                            <img class="item-image" src="images/soporte-auriculares.jpg">
+                            <div class="item-details">
+                                <h4 class="item-price">$549.99</h4>
+                                <button class="item-button btn btn-primary addToCart">AÑADIR AL CARRITO</button>
                             </div>
-
-                            <p class="product-price">$ 750</p>
-
                         </div>
-
                     </div>
-
                 </div>
-
-                <div class="col-md-4 product-box">
-
-                    <img src="images/organizador-stormtrooper.jpg" alt="" class="product-image">
-
-                    <div class="row">
-
-                        <div class="col-md-12">
-
-                            <div class="product-description">Organizador Stormtrooper - Llaves Billetera Barbijo
-                                Anteojos </div>
-
-                            <p class="product-price">$ 850</p>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class="container justify-content-center">
-
-            <div class="row">
-
-                <div class="col-md-4 product-box-ii">
-
-                    <img src="images/portaretrato-pared.jpg" alt="" class="product-image">
-
-                    <div class="row">
-
-                        <div class="col-md-12">
-
-                            <div class="product-description">Portaretrato De Pared- Llaves Billetera Barbijo Anteojos
+                <div class="row">
+                    <div class="col-12 col-md-4">
+                        <div class="item shadow mb-4">
+                            <h3 class="item-title">Mate Baby Groot</h3>
+                            <img class="item-image" src="images/mate-babygroot.jpg">
+                            <div class="item-details">
+                                <h4 class="item-price">$649.99</h4>
+                                <button class="item-button btn btn-primary addToCart">AÑADIR AL CARRITO</button>
                             </div>
-
-                            <div class="product-price">$ 600</div>
-
                         </div>
-
                     </div>
-
+                    <div class="col-12 col-md-4">
+                        <div class="item shadow mb-4">
+                            <h3 class="item-title">Mate Baby Groot</h3>
+                            <img class="item-image" src="images/mate-babygrootii.jpg">
+                            <div class="item-details">
+                                <h4 class="item-price">$749.99</h4>
+                                <button class="item-button btn btn-primary addToCart">AÑADIR AL CARRITO</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <div class="item shadow mb-4">
+                            <h3 class="item-title">Mate Robocop</h3>
+                            <img class="item-image" src="images/mate-robocop.jpg">
+                            <div class="item-details">
+                                <h4 class="item-price">$799.99</h4>
+                                <button class="item-button btn btn-primary addToCart">AÑADIR AL CARRITO</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
+                <div class="row">
+                    <div class="col-12 col-md-4">
+                        <div class="item shadow mb-4">
+                            <h3 class="item-title">Portaretrato de Pared</h3>
+                            <img class="item-image" src="images/portaretrato-pared.jpg">
+                            <div class="item-details">
+                                <h4 class="item-price">$599.99</h4>
+                                <button class="item-button btn btn-primary addToCart">AÑADIR AL CARRITO</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <div class="item shadow mb-4">
+                            <h3 class="item-title">Mate Darth Vader</h3>
+                            <img class="item-image" src="images/mate-darthvader.jpg">
+                            <div class="item-details">
+                                <h4 class="item-price">$749.99</h4>
+                                <button class="item-button btn btn-primary addToCart">AÑADIR AL CARRITO</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <div class="item shadow mb-4">
+                            <h3 class="item-title">Organizador Stormtrooper</h3>
+                            <img class="item-image" src="images/organizador-stormtrooper.jpg">
+                            <div class="item-details">
+                                <h4 class="item-price">$699.99</h4>
+                                <button class="item-button btn btn-primary addToCart">AÑADIR AL CARRITO</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-md-4">
+                        <div class="item shadow mb-4">
+                            <h3 class="item-title">Organizador de Pared</h3>
+                            <img class="item-image" src="images/organizador-pared.jpg">
+                            <div class="item-details">
+                                <h4 class="item-price">$599.99</h4>
+                                <button class="item-button btn btn-primary addToCart">AÑADIR AL CARRITO</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <div class="item shadow mb-4">
+                            <h3 class="item-title">Mate Terminator</h3>
+                            <img class="item-image" src="images/mate-terminator.jpg">
+                            <div class="item-details">
+                                <h4 class="item-price">$749.99</h4>
+                                <button class="item-button btn btn-primary addToCart">AÑADIR AL CARRITO</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <div class="item shadow mb-4">
+                            <h3 class="item-title">Mate Death Star</h3>
+                            <img class="item-image" src="images/mate-deathstar.jpg">
+                            <div class="item-details">
+                                <h4 class="item-price">$649.99</h4>
+                                <button class="item-button btn btn-primary addToCart">AÑADIR AL CARRITO</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-
         </div>
-
     </section>
-
-    <!-- Fin Hogar, Muebles y Jardín -->
-
-    <!-- Electrónica, Audio y Video -->
-
-    <section class="eav">
-
-        <a name="eav"></a>
-
-        <H6 class="title">Electrónica, Audio y Video</H6>
-
-        <div class="container justify-content-center">
-
-            <div class="row">
-
-                <div class="col-md-4 product-box">
-
-                    <img src="images/soporte-auriculares.jpg" alt="" class="product-image">
-
-                    <div class="row">
-
-                        <div class="col-md-12">
-
-                            <div class="product-description"> Soporte De Auriculares Escritorio O Estante Ajustable 3D
-                            </div>
-
-                            <div class="product-price">$ 600</div>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-    <!-- Fin Electrónica, Audio y Video -->
-
-    <!-- Juegos y Juguetes -->
-
-    <section class="jj">
-
-        <a name="jj"></a>
-
-        <H6 class="title">Juegos y Juguetes</H6>
-
-        <div class="container justify-content-center">
-
-            <div class="row">
-
-                <div class="col-md-4 product-box">
-
-                    <img src="images/muñeco-amongus.jpg" alt="" class="product-image">
-
-                    <div class="row">
-
-                        <div class="col-md-12">
-
-                            <div class="product-description"> Muñeco Among Us 9 Cm Tripulante 2 En 1 Encastrable
-                            </div>
-
-                            <div class="product-price">$ 600</div>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-    <!-- Fin Juegos y Juguetes -->
 
     <!-- Fin Productos -->
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <!-- Mi JS -->
 
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"
-        integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js"
-        integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous">
-    </script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.bundle.js"></script>
+    <script src="js/jquery.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/main.js"></script>
 
 </body>
 

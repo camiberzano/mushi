@@ -1,116 +1,118 @@
-//Objetos
+const addToShoppingCartButtons = document.querySelectorAll('.addToCart');
+addToShoppingCartButtons.forEach((addToCartButton) => {
+  addToCartButton.addEventListener('click', addToCartClicked);
+});
 
-class producto {
-    constructor(nombre, codigo, precio) {
-        this.nombre = nombre;
-        this.codigo = codigo;
-        this.precio = precio;
-    }
-    agregar_producto(numero_producto) {
-        if (numero_producto == this.codigo) {
-            return "Selección: " + this.nombre + " $ " + this.precio;
-        }
-    }
+const comprarButton = document.querySelector('.comprarButton');
+comprarButton.addEventListener('click', comprarButtonClicked);
+
+const shoppingCartItemsContainer = document.querySelector(
+  '.shoppingCartItemsContainer'
+);
+
+function addToCartClicked(event) {
+  const button = event.target;
+  const item = button.closest('.item');
+
+  const itemTitle = item.querySelector('.item-title').textContent;
+  const itemPrice = item.querySelector('.item-price').textContent;
+  const itemImage = item.querySelector('.item-image').src;
+
+  addItemToShoppingCart(itemTitle, itemPrice, itemImage);
 }
 
-//Productos
-
-var producto01 = new producto("Soporte de Auriculares", 1, 600);
-var producto02 = new producto("Mate Darth Vader", 2, 750);
-var producto03 = new producto("Mate Baby Groot", 3, 750);
-var producto04 = new producto("Cortantes para Galletas", 4, 600);
-var producto05 = new producto("Mate Robocop", 5, 950);
-var producto06 = new producto("Organizador de Pared", 6, 600);
-var producto07 = new producto("Mate Baby Groot II", 7, 850);
-var producto08 = new producto("Mate Terminator", 8, 850);
-var producto09 = new producto("Mate Death Star", 9, 750);
-var producto10 = new producto("Muñeco Among Us", 10, 600);
-var producto11 = new producto("Portaretrato de Pared", 11, 600);
-var producto12 = new producto("Organizador Stormtrooper", 12, 850);
-
-//Lista de Productos
-
-let lista_productos = [];
-
-lista_productos.push(producto01);
-lista_productos.push(producto02);
-lista_productos.push(producto03);
-lista_productos.push(producto04);
-lista_productos.push(producto05);
-lista_productos.push(producto06);
-lista_productos.push(producto07);
-lista_productos.push(producto08);
-lista_productos.push(producto09);
-lista_productos.push(producto10);
-lista_productos.push(producto11);
-lista_productos.push(producto12);
-
-console.log(lista_productos.length);
-
-//Buscar productos
-
-let critero_busqueda = prompt ("Buscar: ");
-for (let producto of lista_productos) {
-    for(let codigo in producto){
-        if(producto[codigo] == critero_busqueda) {
-            alert ("Producto encontrado: " + producto.codigo + " - " + producto.nombre)
-        }
+function addItemToShoppingCart(itemTitle, itemPrice, itemImage) {
+  const elementsTitle = shoppingCartItemsContainer.getElementsByClassName(
+    'shoppingCartItemTitle'
+  );
+  for (let i = 0; i < elementsTitle.length; i++) {
+    if (elementsTitle[i].innerText === itemTitle) {
+      let elementQuantity = elementsTitle[
+        i
+      ].parentElement.parentElement.parentElement.querySelector(
+        '.shoppingCartItemQuantity'
+      );
+      elementQuantity.value++;
+      $('.toast').toast('show');
+      updateShoppingCartTotal();
+      return;
     }
+  }
+
+  const shoppingCartRow = document.createElement('div');
+  const shoppingCartContent = `
+  <div class="row shoppingCartItem">
+        <div class="col-6">
+            <div class="shopping-cart-item d-flex align-items-center h-100 border-bottom pb-2 pt-3">
+                <img src=${itemImage} class="shopping-cart-image">
+                <h6 class="shopping-cart-item-title shoppingCartItemTitle text-truncate ml-3 mb-0">${itemTitle}</h6>
+            </div>
+        </div>
+        <div class="col-2">
+            <div class="shopping-cart-price d-flex align-items-center h-100 border-bottom pb-2 pt-3">
+                <p class="item-price mb-0 shoppingCartItemPrice">${itemPrice}</p>
+            </div>
+        </div>
+        <div class="col-4">
+            <div
+                class="shopping-cart-quantity d-flex justify-content-between align-items-center h-100 border-bottom pb-2 pt-3">
+                <input class="shopping-cart-quantity-input shoppingCartItemQuantity" type="number"
+                    value="1">
+                <button class="btn btn-danger buttonDelete" type="button">X</button>
+            </div>
+        </div>
+    </div>`;
+  shoppingCartRow.innerHTML = shoppingCartContent;
+  shoppingCartItemsContainer.append(shoppingCartRow);
+
+  shoppingCartRow
+    .querySelector('.buttonDelete')
+    .addEventListener('click', removeShoppingCartItem);
+
+  shoppingCartRow
+    .querySelector('.shoppingCartItemQuantity')
+    .addEventListener('change', quantityChanged);
+
+  updateShoppingCartTotal();
 }
 
-//Elegir productos
+function updateShoppingCartTotal() {
+  let total = 0;
+  const shoppingCartTotal = document.querySelector('.shoppingCartTotal');
 
-let elegir_producto = prompt("Seleccionar producto");
+  const shoppingCartItems = document.querySelectorAll('.shoppingCartItem');
 
-//Función
-
-function seleccionar_producto(numero_producto) {
-    switch (numero_producto) {
-        case "1":
-            alert(producto01.agregar_producto(numero_producto));
-            break;
-        case "2":
-            alert(producto02.agregar_producto(numero_producto));
-            break;
-        case "3":
-            alert(producto03.agregar_producto(numero_producto));
-            break;
-        case "4":
-            alert(producto04.agregar_producto(numero_producto));
-            break;
-        case "5":
-            alert(producto05.agregar_producto(numero_producto));
-            break;
-        case "6":
-            alert(producto06.agregar_producto(numero_producto));
-            break;
-        case "7":
-            alert(producto07.agregar_producto(numero_producto));
-            break;
-        case "8":
-            alert(producto08.agregar_producto(numero_producto));
-            break;
-        case "9":
-            alert(producto09.agregar_producto(numero_producto));
-            break;
-        case "10":
-            alert(producto10.agregar_producto(numero_producto));
-            break;
-        case "11":
-            alert(producto11.agregar_producto(numero_producto));
-            break;
-        case "12":
-            alert(producto12.agregar_producto(numero_producto));
-            break;
-        default:
-            alert("El producto seleccionado es incorrecto");
-            break;
-    }
+  shoppingCartItems.forEach((shoppingCartItem) => {
+    const shoppingCartItemPriceElement = shoppingCartItem.querySelector(
+      '.shoppingCartItemPrice'
+    );
+    const shoppingCartItemPrice = Number(
+      shoppingCartItemPriceElement.textContent.replace('$', '')
+    );
+    const shoppingCartItemQuantityElement = shoppingCartItem.querySelector(
+      '.shoppingCartItemQuantity'
+    );
+    const shoppingCartItemQuantity = Number(
+      shoppingCartItemQuantityElement.value
+    );
+    total = total + shoppingCartItemPrice * shoppingCartItemQuantity;
+  });
+  shoppingCartTotal.innerHTML = `$${total.toFixed(2)}`;
 }
 
-//Bucle
+function removeShoppingCartItem(event) {
+  const buttonClicked = event.target;
+  buttonClicked.closest('.shoppingCartItem').remove();
+  updateShoppingCartTotal();
+}
 
-while (elegir_producto != "ESC") {
-    seleccionar_producto(elegir_producto);
-    elegir_producto = prompt("Seleccionar producto");
+function quantityChanged(event) {
+  const input = event.target;
+  input.value <= 0 ? (input.value = 1) : null;
+  updateShoppingCartTotal();
+}
+
+function comprarButtonClicked() {
+  shoppingCartItemsContainer.innerHTML = '';
+  updateShoppingCartTotal();
 }
